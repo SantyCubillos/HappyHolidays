@@ -1,0 +1,399 @@
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+  --backgroundColor: #040404;
+  --primaryBalloon: #e91163;
+  --secondaryBalloon: #007bff;
+  --primaryButton: #2563eb;
+  --secondaryButton : #7b2cbf;
+  --whiteColor: #ffffff;
+  --blackColor: #000000;
+  --disabledColor: #404040;
+  --linkColor: #2563eb;
+  --TelegramColor: #057db9;
+  --whatsAppColor: #06A340;
+  --whiteGlowSoft: rgba(255, 255, 255, 0.1);
+  --whiteGlowMedium: rgba(255, 255, 255, 0.2);
+  --whiteGlowStrong: rgba(255, 255, 255, 0.3);
+  --blackShadowMedium: rgba(0, 0, 0, 0.3);
+  --blackShadowDeep: rgba(0, 0, 0, 0.5);
+}
+
+body{
+  align-items: center;
+  background-color: var(--backgroundColor);
+  color: var(--whiteColor);
+  display: flex;
+  font-family: 'Pangolin', cursive; 
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.instruction{
+  font-size: 20px;
+  font-weight: 300;  
+}
+
+.canvasContainer{
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  justify-content: space-around;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.toolTip{
+  backdrop-filter: blur(5px);
+  background: var(--whiteGlowSoft);
+  border: 1px solid var(--whiteGlowMedium);
+  border-radius: 20px;
+  font-size: 1.1rem;
+  left: 50%;
+  padding: 10px 20px;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.5 ease;
+  z-index: 100;
+}
+
+.balloonContainer{
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--whiteColor);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-family: inherit;
+  margin: 5px;
+  transition: opacity 0.5s ease;
+}
+
+.balloon{
+  align-items: center;
+  border-radius: 50% 50% 50% 50% / 45% 45% 55% 55%;
+  box-shadow: inset -10px -10px 25px var(--blackShadowDeep), 0 10px 35px var(--blackShadowMedium), inset 10px 10px 20px var(--whiteGlowMedium);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  height: 220px;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  transition: float 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+  width: 180px;      
+}
+
+.balloon:hover{
+  transform: scale(1.1) translateY(-10px);
+}
+
+/* Brillo del globo */
+.balloon::before{
+  border-bottom: 12px solid inherit;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  bottom: -8px;
+  content: '';
+  left: 20%;
+  opacity: 0.8;
+  position: absolute;
+  top:20%;
+  transform: translateX(-50%);
+  width: 30px;
+}
+
+/* Nudo del globo */
+.balloonKnot{
+  background: inherit;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  height: 10px;
+  margin-top: auto;
+  width: 15px;
+  z-index: 2;
+}
+
+/* Hilo del globo */
+.balloonThread{
+  background: linear-gradient(to bottom, var(--whiteColor), transparent);
+  height: 120px;
+  margin-top: -5px;
+  width: 3px;
+}
+
+.balloon, .balloonKnot, .balloonThread{
+  animation: balloonFloat 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.balloon .balloonTitle{
+  color: var(--whiteColor);
+  font-size: 1.4rem;
+  font-weight: bold;
+  pointer-events: none;
+  text-shadow: 1px 1px 3px var(--blackShadowDeep);
+}
+
+.primaryColor{
+  background: var(--primaryBalloon);
+}
+
+.secondaryColor{
+  background: var(--secondaryBalloon);
+}
+
+.balloonKnot, .balloonThread {
+  pointer-events: none;
+}
+
+/* Mensaje de cumpleaños */
+.messageContainer{
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  visibility: hidden;
+  width: 90%;
+  z-index: 20;
+}
+
+.messageContainer.visible{
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  visibility: visible;
+}
+
+.messageTitle{
+  animation: gradientText 3s linear infinite;
+  background: linear-gradient(45deg, var(--primaryBalloon), var(--secondaryBalloon), var(--primaryBalloon));
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-size: 200% auto;
+  font-size: clamp(3rem, 15vw, 18rem);
+  letter-spacing: -2px;
+  margin: 0;
+  -webkit-text-fill-color: transparent;
+}
+
+.messageText{
+  font-size: clamp(1.2rem, 4vw, 2.2rem);
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+/*Partículas de Explosion del globo */
+.particle{
+  border-radius: 50%;
+  pointer-events: none;
+  position: absolute;
+  z-index: 100;
+}
+
+.messageButton, .resetButton{
+  border-radius: 5px;
+  color: var(--whiteColor);
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bolder;
+  margin-top: 5px;
+  padding: 10px 20px;
+  pointer-events: auto;
+  transition: opacity 0.5 ease;
+  z-index: 100;
+}
+
+.messageButton{
+  background-color: var(--primaryButton);
+  border: 1px solid var(--primaryButton);
+  box-shadow: 0 0 10px var(--primaryButton);
+}
+
+.resetButton{
+  background-color: var(--secondaryButton);
+  border: 1px solid var(--secondaryButton);
+  box-shadow: 0 0 10px var(--secondaryButton);
+}
+
+.messageButton:hover, .resetButton:hover{
+  border: 2px solid var(--whiteColor);
+  box-shadow: 0 0 15px var(--whiteColor);
+}
+
+.formContainer{
+  background-color: var(--whiteColor);
+  border-radius: 15px;
+  color: var(--blackColor);
+  left: 50%;
+  opacity: 0;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  visibility: hidden;
+  z-index: 200;
+}
+
+.formContainer.visible{
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  visibility: visible;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.inputName, .selectEvent{
+  border: 1px solid var(--blackColor);
+  border-radius: 5px;
+  margin: 5px 0px;
+  padding: 10px;
+}
+
+.formButton, .formBack{
+  border: none;
+  border-radius: 5px;
+  color: var(--whiteColor);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bolder;
+  margin-top: 10px;
+  padding: 15px;
+}
+
+.formButton{
+  background-color: var(--primaryButton);
+}
+
+.formBack{
+  background-color: var(--secondaryButton);
+}
+
+.formButton:hover, .formBack:hover{
+  text-shadow: 0 0 10px var(--whiteColor), 0 0 20px var(--whiteColor);
+}
+
+.formError{
+  font-size: 18px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.formLink{
+  color: var(--linkColor);
+  font-size: 14px;
+  text-align: center;
+}
+
+.formIcons{
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.shareWhatsApp, .shareTelegram{
+  align-items: center;
+  color: var(--disabledColor);
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.shareWhatsApp.active, .shareTelegram.active{
+  pointer-events: auto;
+}
+
+.shareWhatsApp.active{
+  color: var(--whatsAppColor);
+}
+
+.shareTelegram.active{
+  color: var(--TelegramColor);
+}
+
+.formIcons span{
+  color: var(--blackColor);
+}
+
+@keyframes balloonFloat{
+  0%, 100%{ transform: translateY(0) rotate(0deg);}
+  50%{transform: translateY(-40px) rotate(1deg);}
+}
+
+@keyframes gradientText{
+  0%{ background-position: 0% 50%;}
+  50%{ background-position: 200% 50%;}
+}
+
+@keyframes explode{
+  0%{ opacity: 1; transform: translate(0, 0) scale(1) rotate(0deg);}
+  100%{ opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0) rotate(360deg);}
+}
+
+@media (max-width: 768px){
+  .canvasContainer{
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .balloon{
+    height: 170px;
+    width: 140px;
+  }
+
+  .balloon .balloonTitle{
+    font-size: 1.2rem;
+  }
+
+  .formContainer{
+    width: 95%;
+  }
+
+  .formContainer.visible{
+    height: auto;
+    left: 50%;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 20px;
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 769px) and (max-width:1024px){
+  .formContainer.visible{
+    height: auto;
+    left: 50%;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 20px;
+    transform: translateX(-50%);
+  }
+}

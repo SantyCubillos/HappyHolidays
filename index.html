@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Envía un detalle digital único para cualquier festividad. Explota los globos y descubre mensajes personalizados con animaciones mágicas en Happy Holidays">
+  <title>Feliz Festividades 2026</title>
+  <link rel="shortcut icon" href="img/balloon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/all.min.css">
+</head>
+<body>
+  <main>
+    <span class="toolTip" id="toolTip" aria-hidden="true">¡Toca o haz clic en los globos para explotarlos! 🎈</span>
+    <section class="canvasContainer">
+      <button class="balloonContainer" type="button" id="PrimaryContainer" data-color="#ff477e">
+        <span class="balloon primaryColor">
+          <span class="balloonTitle" id="balloonEvent">¡HAPPY HOLIDAYS!</span>
+        </span>
+        <span class="balloonKnot primaryColor"></span>
+        <span class="balloonThread"></span>
+      </button>
+      <button class="balloonContainer" type="button" id="SecondaryContainer" data-color="#9d4edd">
+        <span class="balloon secondaryColor">
+          <span class="balloonTitle" id="balloonName">FESTEJADOS</span>
+        </span>
+        <span class="balloonKnot secondaryColor"></span>
+        <span class="balloonThread"></span>
+      </button>
+    </section>
+    <section class="messageContainer">
+      <h1 class="messageTitle">FESTEJADO</h1>
+      <h2 class="messageText">¡Disfruta de este día tan especial!</h2>
+      <button class="messageButton" aria-label="Crea y comparte el tuyo">¡Crea y comparte el tuyo! 🚀</button>
+      <button class="resetButton" aria-label="Repetir sorpresa">Repetir sorpresa 🎈</button>
+    </section>
+    <section class="formContainer">
+      <section class="formCabecera">
+        <h1 class="formTitle">🎈 Personaliza tu Mensaje</h1>
+        <p class="formSubtitle">Personaliza tu saludo y compártelo.</p>
+      </section>
+      <form action="" class="form" method="get">
+        <label for="name" class="formName">Nombre del festejado</label>
+        <input type="text" id="name" class="inputName" placeholder="Ingrese el nombre">
+        <label for="event" class="formEvent">Selecciona la festividad:</label>
+        <select name="" id="event" class="selectEvent" aria-label="Selecciona la festividad a celebrar">
+          <option value="CUMPLEAÑOS" class="optionEvent">Cumpleaños</option>
+          <option value="DÍA DE LA MADRE" class="optionEvent">Día de la Madre</option>
+          <option value="DÍA DEL PADRE" class="optionEvent">Día del Padre</option>
+          <option value="DÍA DEL MAESTRO" class="optionEvent">Día del Maestro</option>
+          <option value="NAVIDAD" class="optionEvent">Navidad</option>
+          <option value="AÑO NUEVO 2027" class="optionEvent">Año Nuevo</option>
+        </select>
+        <div class="formError"  id="formError" role="alert"></div>
+        <div class="formLink" aria-live="assertive"></div>
+        <button class="formButton" type="button" aria-label="Crear y compartir">Crear y Compartir 🚀</button>
+        <button class="formBack" type="button" aria-label="Seguir celebrando">Seguir Celebrando 🥳</button>
+        <section class="formIcons">
+          <a href="" class="shareWhatsApp" target="_blank" aria-label="Compartir en WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Compartir</span>
+          </a>
+          <a href="" class="shareTelegram" target="_blank" aria-label="Compartir en Telegram">
+            <i class="fa-brands fa-telegram"></i>
+            <span>Compartir</span>
+          </a>
+        </section>
+      </form>
+    </section>
+  </main>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
